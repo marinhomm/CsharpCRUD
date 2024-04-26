@@ -15,4 +15,10 @@ public class LanguageRepository : ILanguageRepository
         _context.SaveChanges();
         return response.Entity;
     }
+
+    public List<Language> Get()
+    {
+        var response = _context.Language.ToList();
+        return response;
+    }
 }

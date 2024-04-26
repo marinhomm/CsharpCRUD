@@ -23,4 +23,19 @@ public class LanguageController : Controller
             throw new Exception(e.Message);
         }
     }
+
+    [HttpGet]
+    [Route("v1/Language/Get")]
+    public IActionResult Get()
+    {
+        try
+        {
+            var response = _languageUseCase.Get();
+            return Ok(response);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
 }

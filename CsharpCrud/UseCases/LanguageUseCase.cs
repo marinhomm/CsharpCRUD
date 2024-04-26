@@ -22,4 +22,10 @@ public class LanguageUseCase : ILanguageUseCase
         var response = _languageRepository.Save(language);
         return response;
     }
+
+    public List<Language> Get()
+    {
+        var response = _languageRepository.Get();
+        return response;
+    }
 }
