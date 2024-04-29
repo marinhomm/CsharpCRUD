@@ -21,4 +21,23 @@ public class LanguageRepository : ILanguageRepository
         var response = _context.Language.ToList();
         return response;
     }
+
+    public Language? GetById(int id)
+    {
+        var response = _context.Language.Find(id);
+        return response;
+    }
+
+    public Language Update(Language language)
+    {
+        _context.Language.Update(language);
+        _context.SaveChanges();
+        return language;
+    }
+
+    public void Delete(Language language)
+    {
+        _context.Language.Remove(language);
+        _context.SaveChanges();
+    }
 }

@@ -38,4 +38,49 @@ public class LanguageController : Controller
             throw new Exception(e.Message);
         }
     }
+
+    [HttpGet]
+    [Route("v1/Language/GetById/{id}")]
+    public IActionResult GetById(int id)
+    {
+        try
+        {
+            var response = _languageUseCase.GetById(id);
+            return Ok(response);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+
+    [HttpPut]
+    [Route("v1/Language/Update/{id}")]
+    public IActionResult Update(int id, [FromBody] LanguageInputDTO data)
+    {
+        try
+        {
+            var response = _languageUseCase.Update(id, data);
+            return Ok(response);
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
+
+    [HttpDelete]
+    [Route("v1/Language/Delete/{id}")]
+    public IActionResult Delete(int id)
+    {
+        try
+        {
+            _languageUseCase.Delete(id);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
+    }
 }

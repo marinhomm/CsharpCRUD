@@ -28,4 +28,38 @@ public class LanguageUseCase : ILanguageUseCase
         var response = _languageRepository.Get();
         return response;
     }
+
+    public Language? GetById(int id)
+    {
+        var response = _languageRepository.GetById(id);
+        return response;
+    }
+
+    public Language Update(int id, LanguageInputDTO data)
+    {
+        _dtoValidator.Validate(data);
+
+        Language? language = _languageRepository.GetById(id);
+        if(language == null)
+        {
+            throw new Exception("This register does not exist, provide a valid identifier!");
+        }
+
+        language.Name = data.Name;
+        language.ReleaseYear = data.ReleaseYear;
+
+        var response = _languageRepository.Update(language);
+        return response;
+    }
+
+    public void Delete(int id)
+    {
+        Language? language = _languageRepository.GetById(id);
+        if(language == null)
+        {
+            throw new Exception("This register does not exist, provide a valid identifier!");
+        }
+
+        _languageRepository.Delete(language);
+    }
 }
